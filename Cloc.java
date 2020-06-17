@@ -1,27 +1,23 @@
-import java.util.Date;
 
+import java.util.Date;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Color;
 
-
 public class Cloc {
 
     private ClocShape clocSha = new ClocShape();
-    
     private JFrame frame = new JFrame();
     private JPanel panel = new JPanel();
     private Graphics graphics;
-    
     private Hour hour = new Hour();
     private Minute minute = new Minute();
     private Second second = new Second();
     private int hours;
     private int minutes;
     private int seconds;
-
 
     public Cloc() {
 
@@ -671,7 +667,7 @@ public class Cloc {
         }
     }
 
-    public void setFrame() {
+    public void setFrames() {
         frame.setTitle("Clock");
  
         panel.setBackground(Color.red );
@@ -686,7 +682,7 @@ public class Cloc {
         
     public void show() {
         
-        setFrame();
+        setFrames();
         
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -697,7 +693,7 @@ public class Cloc {
                     } catch(Exception e) {
                         e.printStackTrace();
                     }
-                    System.out.println(hours + ":" + minutes + ":" + seconds);
+
                     seconds++;
                     if (seconds > 59) {
                         minutes++;
@@ -708,19 +704,11 @@ public class Cloc {
                         minutes = 0;
                     }
                     
-                    String aMpMStr = "";
-                    if (hours > 11) {
-                        aMpMStr = "P.M.";
-                        hours = hours - 12;
-                    } else {
-                        aMpMStr = "A.M.";
-                    }
-                    
                     clocSha = new ClocShape();
                     clocSha.drawOval(); clocSha.drawCenterDot(); clocSha.drawTic(seconds = seconds);
                     
                     graphics. setColor(Color.BLUE);
-                    graphics . drawString(hours + ":" + minutes + ":" + seconds + " " + aMpMStr, 200, 100);
+                    graphics . drawString(hours + ":" + minutes + ":" + seconds, 200, 100);
                     
                     Hour hour = new Hour(); Minute minute = new Minute(); Second second = new Second();
                     hour.draw(hours);
